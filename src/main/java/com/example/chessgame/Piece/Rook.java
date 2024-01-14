@@ -1,6 +1,7 @@
 package com.example.chessgame.Piece;
 import com.example.chessgame.Board.Board;
 import com.example.chessgame.Move.Move;
+import javafx.scene.paint.Color;
 
 public class Rook extends Piece {
     public Rook(PieceColor color, String ch) {
@@ -8,7 +9,40 @@ public class Rook extends Piece {
     }
     @Override
     public void getValidMove(Board board, int startX, int startY) {
-
+        int tempX = 1;
+        int tempY = 0;
+        int currentX;
+        int currentY;
+        for (int i = 0; i < 4; i++) {
+            currentX = startX;
+            currentY = startY;
+            if (i == 1) {
+                tempX = -1;
+                tempY = 0;
+            }
+            if (i == 2) {
+                tempX = 0;
+                tempY = 1;
+            }
+            if (i == 3) {
+                tempX = 0;
+                tempY = -1;
+            }
+            while (currentX >= 0 && currentX < 8 && currentY >= 0 && currentY < 8) {
+                if (!(currentX == startX && currentY == startY)) {
+                    if (board.getPiece(currentX, currentY) != null) {
+                        if (board.getPiece(currentX, currentY).getColor() == this.getColor()) {
+                            break;
+                        }
+                        board.getSquares()[currentX][currentY].setFill(Color.RED);
+                        break;
+                    }
+                    board.getSquares()[currentX][currentY].setFill(Color.rgb(255, 202, 134));
+                }
+                currentX += tempX;
+                currentY += tempY;
+            }
+        }
     }
     @Override
     public boolean isValidMove(Board board, Move move) {

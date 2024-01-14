@@ -20,10 +20,9 @@ public class Pawn extends Piece {
         if (startX == 1 || startX == 6) {
             if (board.getSquares()[startX+temp][startY].getUserData() == null) {
                 board.getSquares()[startX+temp][startY].setFill(Color.rgb( 255,202,134));
-            }
-            if (board.getSquares()[startX+temp*2][startY].getUserData() == null) {
-                board.getSquares()[startX+temp][startY].setFill(Color.rgb( 255,202,134));
-                board.getSquares()[startX+temp*2][startY].setFill(Color.rgb( 255,202,134));
+                if (board.getSquares()[startX+temp*2][startY].getUserData() == null) {
+                    board.getSquares()[startX+temp*2][startY].setFill(Color.rgb( 255,202,134));
+                }
             }
         }
         else {
